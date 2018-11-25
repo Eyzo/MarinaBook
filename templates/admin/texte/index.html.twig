@@ -1,0 +1,38 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Dashboard Magical Marina gestion du texte{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    <h2>Section Texte</h2>
+
+    <div class="table-responsive">
+        <table class="texte-table table table-striped table-sm">
+            <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ texte.titre }}</td>
+            </tr>
+            <tr>
+                <th>Texte</th>
+                <td>{{ texte.texte }}</td>
+            </tr>
+            <tr>
+                <th>Informations</th>
+                <td>{{ texte.info }}</td>
+            </tr>
+            <tr>
+                <th>Actions</th>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('admin.texte.edit',{'id':texte.id}) }}" alt="lien-modif">Modifier</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

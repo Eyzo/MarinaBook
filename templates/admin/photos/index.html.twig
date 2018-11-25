@@ -1,0 +1,45 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Dashboard Magical Marina gestion du texte{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    <h2>Photos de la Gallerie {{ gallerie.nom }}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+           <thead>
+               <tr>
+                    <th>Image</th>
+                    <th>Alt</th>
+                    <th>Actions</th>
+               </tr>
+           </thead>
+            <tbody>
+            {% for photo in photos %}
+                <tr>
+                    <td>{{ photo.image }}</td>
+                    <td>{{ photo.alt }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('admin.photos.edit',{'id':photo.galleriephoto.id ,'id_photo':photo.id}) }}" alt="">modifier</a>
+
+                        <form method="post" action="{{ path('admin.photos.delete',{'id': gallerie.id,'id_photo':photo.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sûr ?')">
+
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ photo.id) }}">
+
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-success" href="{{ path('admin.photos.new',{'id':gallerie.id}) }}" alt="">Ajouter une nouvelle Photo</a>
+    </div>
+
+{% endblock %}

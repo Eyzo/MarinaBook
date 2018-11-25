@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de Contact du site Magical Marina !{% endblock %}
+
+{% block body %}
+    <div class="gallerie container" style="margin: 30px auto;">
+        <h2 class="titre-block">Gallerie photo : {{ gallerie.nom }}</h2>
+        <div class="row" style="margin-top:10px;">
+            {% for photo in gallerie.photos %}
+                <a href="{{ asset(photo.image) }}" data-toggle="lightbox" data-gallery="{{ gallerie.nom }}"><img width="250" height="250" src="{{ asset(photo.image) }}" alt="{{ photo.alt }}"></a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
+
+{% endblock %}

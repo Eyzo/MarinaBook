@@ -1,0 +1,10 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Galleries Photos <i class="fas fa-camera"></i>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for gallerie in galleries %}
+        <a class="dropdown-item" href="{{ path('gallerie_photo',{'id':gallerie.id}) }}">{{ gallerie.nom }}</a>
+        {% endfor %}
+    </div>
+</li>
