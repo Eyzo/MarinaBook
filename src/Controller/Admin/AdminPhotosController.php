@@ -36,7 +36,7 @@ class AdminPhotosController extends AbstractController
      */
     public function index(GalleriePhoto $gallerie)
     {
-        $photos = $gallerie->getPhotos();
+        $photos = $this->rep_photos->findBy(['galleriePhoto' => $gallerie],['id' => 'DESC']);
 
         return $this->render('admin/photos/index.html.twig', [
             'photos' => $photos,

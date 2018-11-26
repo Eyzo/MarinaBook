@@ -115,3 +115,14 @@ body {
 {
     font-size: 15px;
 }
+
+.table td
+{
+    vertical-align: middle;
+}
+
+img
+{
+    width: 100px;
+    height: 100px;
+}

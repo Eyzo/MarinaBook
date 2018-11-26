@@ -22,9 +22,12 @@
             <tbody>
             {% for photo in photos %}
                 <tr>
-                    <td>{{ photo.image }}</td>
-                    <td>{{ photo.alt }}</td>
                     <td>
+                        <img src="{{ vich_uploader_asset(photo,'imageFile')|imagine_filter('thumb_admin') }}">
+                    </td>
+                    <td><div>{{ photo.alt }}</div></td>
+                    <td>
+                        <div>
                         <a class="btn btn-primary" href="{{ path('admin.photos.edit',{'id':photo.galleriephoto.id ,'id_photo':photo.id}) }}" alt="">modifier</a>
 
                         <form method="post" action="{{ path('admin.photos.delete',{'id': gallerie.id,'id_photo':photo.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sûr ?')">
@@ -34,6 +37,7 @@
 
                             <button class="btn btn-danger">Supprimer</button>
                         </form>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

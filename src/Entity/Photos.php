@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhotosRepository")
+ * @Vich\Uploadable()
  */
 class Photos
 {
@@ -19,11 +23,6 @@ class Photos
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $alt;
 
     /**
@@ -32,22 +31,59 @@ class Photos
      */
     private $galleriePhoto;
 
+    /**
+     * @Assert\Image(
+     *     mimeTypes={"image/jpeg","image/png"}
+     * )
+     * @Vich\UploadableField(mapping="photos", fileNameProperty="imageName")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImageFile(?File $image = null): void
+    {
+        $this->imageFile = $image;
+
+        if (null !== $image)
+        {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
     }
 
     public function getAlt(): ?string
@@ -73,4 +109,5 @@ class Photos
 
         return $this;
     }
+
 }
