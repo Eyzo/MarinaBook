@@ -19,6 +19,16 @@ class GalleriePhotoRepository extends ServiceEntityRepository
         parent::__construct($registry, GalleriePhoto::class);
     }
 
+    public function findGallerieSlug($slug)
+    {
+        $qb = $this->createQueryBuilder('g')
+            ->where('g.slug = :slug')
+            ->setParameter('slug',$slug);
+
+        return $qb->getQuery()->getOneOrNullResult();
+
+    }
+
     // /**
     //  * @return GalleriePhoto[] Returns an array of GalleriePhoto objects
     //  */

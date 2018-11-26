@@ -18,6 +18,7 @@
                     <th>Image</th>
                     <th>Nom</th>
                     <th>Alt</th>
+                    <th>Note</th>
                    <th>Actions</th>
                </tr>
            </thead>
@@ -28,6 +29,7 @@
                     <td>{{ competence.image }}</td>
                     <td>{{ competence.nom }}</td>
                     <td>{{ competence.alt }}</td>
+                    <td>{{ competence.note }}</td>
                     <td>
                         <a class="btn btn-primary" href="{{ path('admin.competence.edit',{'id':competence.id}) }}" alt="">modifier</a>
 

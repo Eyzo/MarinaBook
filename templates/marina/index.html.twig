@@ -4,6 +4,7 @@
 
 {% block body %}
 
+    {% if texte is not null %}
     <!--block texte-->
     <div class="container">
 
@@ -11,32 +12,28 @@
 
             <div class="block-title">
                 <h2><i class="fas fa-star"></i>
-                    {% if texte is defined %}
                         {{ texte.titre }}
-                    {% endif %}
                 </h2>
             </div>
 
             <div class="block-presentation">
                 <p>
-                    {% if texte is defined %}
-                        {{ texte.texte }}
-                    {% endif %}
+                    {{ texte.texte }}
                 </p>
             </div>
 
             <div class="block-info">
                 <p>
-                    {% if texte is defined %}
-                        {{ texte.info }}
-                    {% endif %}
+                    {{ texte.info }}
                 </p>
             </div>
 
         </div>
 
     </div>
+    {% endif %}
 
+    {% if competences is not empty %}
     <!--Competence background-->
     <div class="block-competence-background">
         <div class="block-competence-titre">
@@ -48,7 +45,7 @@
     <div class="container">
 
         <div class="competences-block">
-            {% if competences is defined %}
+
             {% for row in competences|batch(3) %}
 
             <div class="competence-row row">
@@ -61,17 +58,26 @@
                             <div class="competence-logo" style="background-color:{{ competence.color }}">
                                 <img src="{{ asset(competence.image) }}" alt="{{ competence.alt }}">
                             </div>
+                            <div class="competence-note">
+                                {% for i in 1..competence.note %}
+                                <span style="font-size: 1.8em; color: #f5cf3f;">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                {% endfor %}
+                            </div>
                         </div>
                     {% endfor %}
 
 
             </div>
             {% endfor %}
-            {% endif %}
+
         </div>
 
     </div>
+    {% endif %}
 
+    {% if galleries is not empty %}
     <!--Slider Realisation-->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000">
         <div class="carousel-inner">
@@ -80,7 +86,7 @@
                 {% if loop.first %}
 
                         <div class="carousel-item active" style="background-image: linear-gradient(#4a4a4a 0%,rgba(255, 255, 255, 0) 100%),url({{ asset(gallerie.image) }});">
-                            <a href="{{ path('gallerie_photo',{'id':gallerie.id}) }}" alt="{{ gallerie.nom }}">
+                            <a href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}" alt="{{ gallerie.nom }}">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h2>{{ gallerie.nom }}</h2>
                                     <p class="text-description">{{ gallerie.description }}</p>
@@ -91,7 +97,7 @@
                 {% else %}
 
                         <div class="carousel-item" style="background-image: linear-gradient(#4a4a4a 0%,rgba(255, 255, 255, 0) 100%),url({{ asset(gallerie.image) }});">
-                            <a href="{{ path('gallerie_photo',{'id':gallerie.id}) }}" alt="{{ gallerie.nom }}">
+                            <a href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}" alt="{{ gallerie.nom }}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h2>{{ gallerie.nom }}</h2>
                                 <p class="text-description">{{ gallerie.description }}</p>
@@ -113,7 +119,9 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    {% endif %}
 
+    {% if articles is not empty %}
     <!--Article block-->
     <div class="article-block container">
         <h2 class="titre-block">Articles dédié à mes créations !</h2>
@@ -129,6 +137,7 @@
         {% endfor %}
 
     </div>
+    {% endif %}
 
 {% endblock %}
 

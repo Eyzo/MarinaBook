@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Competence;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +18,15 @@ class CompetenceType extends AbstractType
             ->add('image')
             ->add('nom')
             ->add('alt')
+            ->add('note',ChoiceType::class,[
+                'choices' => array(
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                )
+            ])
         ;
     }
 

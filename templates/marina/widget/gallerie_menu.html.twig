@@ -4,7 +4,7 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         {% for gallerie in galleries %}
-        <a class="dropdown-item" href="{{ path('gallerie_photo',{'id':gallerie.id}) }}">{{ gallerie.nom }}</a>
+        <a class="dropdown-item" href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}">{{ gallerie.nom }}</a>
         {% endfor %}
     </div>
 </li>

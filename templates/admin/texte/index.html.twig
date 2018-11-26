@@ -10,6 +10,7 @@
 
     <h2>Section Texte</h2>
 
+    {% if texte is not null %}
     <div class="table-responsive">
         <table class="texte-table table table-striped table-sm">
             <tbody>
@@ -34,5 +35,8 @@
             </tbody>
         </table>
     </div>
+    {% else %}
+        <a class="btn btn-success" href="{{ path('admin.texte.new') }}" alt="">Creer le block Texte</a>
+    {% endif %}
 
 {% endblock %}

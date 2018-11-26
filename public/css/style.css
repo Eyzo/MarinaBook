@@ -256,7 +256,6 @@ body
     margin-top: 0;
     margin-bottom: 1rem;
     background-color: rgba(0, 0, 0, 0.5411764705882353);
-    height: 120px;
     padding:5px;
 }
 
@@ -338,15 +337,51 @@ input[type="submit"]:hover
     padding-left: 0;
 }
 
-.gallerie a
+.gallerie .photo
 {
-    margin-left: 2.5%;
+    margin: 10px;
     transition: transform 0.3s;
+    width: 23%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    border: solid #6d6d6d;
+    box-shadow: 3px 3px 10px 1px black;
+    padding: 7px;
 }
 
 .gallerie a:hover
 {
     transform: translateY(-5px);
+}
+
+.gallerie .photo image
+{
+    vertical-align: middle;
+    border: solid #6d6d6d;
+    max-width: 230px;
+}
+
+.competence-note
+{
+    margin-top: 10px;
+}
+
+.gallerie .row
+{
+    margin: 10px 0px;
+}
+
+.pagination
+{
+    justify-content: center;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #4b2e5f;
+    border-color: #007bff;
 }
 
 

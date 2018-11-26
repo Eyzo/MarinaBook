@@ -31,7 +31,16 @@ class AdminTexteController extends AbstractController
      */
     public function index()
     {
-        $texte = $this->rep_texte->findAll()[0];
+        $textes = $this->rep_texte->findAll();
+
+        if (!empty($textes))
+        {
+            $texte = $textes[0];
+        }
+        else
+        {
+            $texte = null;
+        }
 
         return $this->render('admin/texte/index.html.twig', [
             'texte' => $texte,
@@ -39,7 +48,7 @@ class AdminTexteController extends AbstractController
     }
 
     /**
-     * @Route("/admin/texte/{id}",name="admin.texte.edit",requirements={"[0-9]*"})
+     * @Route("/admin/texte/{id}",name="admin.texte.edit")
      */
     public function edit(Texte $texte,Request $request)
     {
@@ -57,6 +66,34 @@ class AdminTexteController extends AbstractController
                 'texte' => $texte,
                 'form' => $form->createView(),
             ]);
+    }
+
+    /**
+     * @Route("/admin/creation/texte",name="admin.texte.new")
+     */
+    public function new(Request $request)
+    {
+
+        $texte = new Texte();
+
+        $form = $this->createForm(TexteType::class,$texte);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $this->em->persist($texte);
+            $this->em->flush();
+
+            $this->addFlash('success','le block texte a bien été créer');
+            return $this->redirectToRoute('admin.texte');
+        }
+
+        return $this->render('admin/texte/new.html.twig',[
+            'texte' => $texte,
+            'form' => $form->createView(),
+        ]);
+
     }
 
 }

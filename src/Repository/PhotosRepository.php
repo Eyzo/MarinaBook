@@ -25,7 +25,7 @@ class PhotosRepository extends ServiceEntityRepository
             ->where('p.galleriePhoto = :id')
             ->setParameter('id',$id);
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery();
     }
 
     // /**
