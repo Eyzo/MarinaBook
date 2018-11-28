@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
 
          <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
         {% block stylesheets %}{% endblock %}
         <script src="https://unpkg.com/scrollreveal"></script>
         <script>
@@ -75,19 +74,7 @@
 
         <div class="footer-content row">
 
-            <div class="footer-page">
-                <div class="titre">
-                    <h3 class="footer-title">Page</h3>
-                </div>
-
-                <div class="footer-titre-content">
-                    <ul>
-                        <li><a href="#"><i class="fas fa-home"></i> Acceuil</a></li>
-                        <li><a href="#"><i class="fas fa-camera"></i> Galleries Photos</a></li>
-                        <li><a href="" ><i class="fas fa-users"></i> Contact</a></li>
-                    </ul>
-                </div>
-            </div>
+            {{ render(url('footer.page.listing')) }}
 
             <div class="footer-contact">
                 <div class="titre">
@@ -96,8 +83,8 @@
 
                 <div class="footer-page-content">
                     <ul>
-                        <li><i class="fas fa-envelope"></i> marinaduhamel@gmail.com</li>
-                        <li><i class="fas fa-phone-volume"></i> 06.45.45.74.83</li>
+                        <li><i class="fas fa-envelope"></i> {{ mail }}</li>
+                        <li><i class="fas fa-phone-volume"></i> {{ telephone }}</li>
                     </ul>
                 </div>
             </div>
@@ -109,9 +96,9 @@
 
                 <div class="footer-page-content">
                     <ul>
-                        <li><a href="#" target="_blank"><img src="https://u.imageresize.org/v2/c4644aa6-bfe0-4032-8c17-a236b14c5285.png" alt="facebook-logo"/> Facebook</a></li>
-                        <li><a href="#" target="_blank"><img src="https://u.imageresize.org/v2/26408705-0510-478d-add5-804f8fc40609.png" alt="twitter-logo"/> Twitter</a></li>
-                        <li><a href="#" target="_blank"><img src="https://u.imageresize.org/v2/dc55d773-b67e-46e9-a4de-48035a284892.png" alt="insta-logo"/> Instagramme</a></li>
+                        <li><a href="{{ facebook }}" target="_blank"><img src="https://u.imageresize.org/v2/c4644aa6-bfe0-4032-8c17-a236b14c5285.png" alt="facebook-logo"/> Facebook</a></li>
+                        <li><a href="{{ twitter }}" target="_blank"><img src="https://u.imageresize.org/v2/26408705-0510-478d-add5-804f8fc40609.png" alt="twitter-logo"/> Twitter</a></li>
+                        <li><a href="{{ instagramme }}" target="_blank"><img src="https://u.imageresize.org/v2/dc55d773-b67e-46e9-a4de-48035a284892.png" alt="insta-logo"/> Instagramme</a></li>
                     </ul>
                 </div>
             </div>

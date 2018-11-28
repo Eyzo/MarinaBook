@@ -8,28 +8,30 @@
         <div class="row">
             <div class="contact-block-form col-md-8">
                 <h2 class="titre-block"><i class="fas fa-star"></i> Envoyer moi un message</h2>
-                <form>
+
+                {{ form_start(form) }}
                     <div class="form-group">
-                        <label>Votre adresse email :</label>
-                        <input class="form-control" type="email" required placeholder="Votre email ..." name="email">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
                     </div>
                     <div class="form-group">
-                        <label>Votre message :</label>
-                        <textarea class="form-control" rows="8" placeholder="Votre message" required name="message"></textarea>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message) }}
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary float-right" value="Envoyer">
                     </div>
-                </form>
+                {{ form_end(form) }}
+
             </div>
             <div class="contact-block-info col-md-4">
                 <h2 class="titre-block">Me Contacter</h2>
                 <ul>
-                    <li><i class="fas fa-phone-volume"></i> telephone: 06.45.45.74.83</li>
-                    <li><i class="fas fa-envelope"></i> mail: marinaduhamel@gmail.com</li>
-                    <li><a href="#" alt="lien-fb"><i class="fab fa-facebook"></i> Mon facebook</a></li>
-                    <li><a href="#" alt="lien-twit"><i class="fab fa-twitter"></i> Mon Twitter</a></li>
-                    <li><a href="#" alt="lien-insta"><i class="fab fa-instagram"></i> Mon Instagramme</a></li>
+                    <li><i class="fas fa-phone-volume"></i> telephone: {{ telephone }}</li>
+                    <li><i class="fas fa-envelope"></i> mail: {{ mail }}</li>
+                    <li><a target="_blank" href="{{ facebook }}" alt="lien-fb"><i class="fab fa-facebook"></i> Mon facebook</a></li>
+                    <li><a target="_blank" href="{{ twitter }}" alt="lien-twit"><i class="fab fa-twitter"></i> Mon Twitter</a></li>
+                    <li><a target="_blank" href="{{ instagramme }}" alt="lien-insta"><i class="fab fa-instagram"></i> Mon Instagramme</a></li>
                 </ul>
             </div>
         </div>

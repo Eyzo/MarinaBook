@@ -89,7 +89,7 @@
                             <a href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}" alt="{{ gallerie.nom }}">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h2>{{ gallerie.nom }}</h2>
-                                    <p class="text-description">{{ gallerie.description }}</p>
+                                    <p class="text-description">{{ gallerie.description|texteLimiter(300) }}</p>
                                 </div>
                             </a>
                         </div>
@@ -100,7 +100,9 @@
                             <a href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}" alt="{{ gallerie.nom }}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h2>{{ gallerie.nom }}</h2>
-                                <p class="text-description">{{ gallerie.description }}</p>
+                                <p class="text-description">
+                                    {{ gallerie.description }}
+                                </p>
                             </div>
                             </a>
                         </div>

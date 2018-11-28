@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Actions\SendingMail;
+use App\Entity\Contact;
 use App\Entity\GalleriePhoto;
 use App\Entity\Photos;
+use App\Form\ContactType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CompetenceRepository;
 use App\Repository\GalleriePhotoRepository;
@@ -46,9 +49,23 @@ class MarinaController extends AbstractController
     /**
      * @Route("/contact",name="contact")
      */
-    public function contactIndex()
+    public function contactIndex(Request $request,SendingMail $mail)
     {
-        return $this->render('marina/contact.html.twig');
+        $contact = new Contact();
+
+        $form = $this->createForm(ContactType::class,$contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $this->addFlash('success','Merci pour votre message je vous repondrez dans les plus brefs délais');
+            $mail->sendMail($contact);
+        }
+
+        return $this->render('marina/contact.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -80,6 +97,18 @@ class MarinaController extends AbstractController
         $galleries = $rep_gallerie->findAll();
 
         return $this->render('marina/widget/gallerie_menu.html.twig',[
+            'galleries' => $galleries,
+        ]);
+    }
+
+    /**
+     * @Route("/footer/page/menu",name="footer.page.listing")
+     */
+    public function pageMenuListing(GalleriePhotoRepository $rep_gallerie)
+    {
+        $galleries= $rep_gallerie->findAll();
+
+        return $this->render("marina/widget/page_menu.html.twig",[
             'galleries' => $galleries,
         ]);
     }

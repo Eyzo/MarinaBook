@@ -32,3 +32,6 @@ services:
     App\Listener\ImageCacheSubscriber:
         tags:
         -  { name: doctrine.event_subscriber }
+
+    App\Twig\AppExtension:
+        tags: ['twig.extension']

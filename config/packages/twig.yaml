@@ -3,3 +3,11 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_theme: ['bootstrap_4_layout.html.twig']
+
+    globals:
+        telephone: '06 45 45 74 83'
+        adresse: 'Etaples 62 630 - 76 rue Saint Pierre'
+        mail: marinaduhamel@gmail.com
+        facebook: https://www.facebook.com/bjarmstrongday
+        twitter: https://twitter.com/
+        instagramme: https://www.instagram.com/sofyanboudouni/?hl=fr

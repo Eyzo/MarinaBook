@@ -1,0 +1,17 @@
+<div class="footer-page">
+    <div class="titre">
+        <h3 class="footer-title">Page</h3>
+    </div>
+
+    <div class="footer-titre-content">
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Acceuil</a></li>
+            {% for i,gallerie in galleries %}
+                {% if i <= 4 %}
+                <li><a href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}"><i class="fas fa-camera"></i> {{ gallerie.nom }}</a></li>
+                {% endif %}
+            {% endfor %}
+            <li><a href="" ><i class="fas fa-users"></i> Contact</a></li>
+        </ul>
+    </div>
+</div>
