@@ -38,6 +38,7 @@
 body
 {
     font-family: 'Roboto', sans-serif;
+    min-width: 410px;
 }
 
 .navbar-fixed-top {
@@ -225,8 +226,8 @@ body
 
 .competence-logo img
 {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
 }
 
 .competence-block:hover
@@ -383,6 +384,127 @@ input[type="submit"]:hover
     background-color: #4b2e5f;
     border-color: #007bff;
 }
+
+@media (max-width: 767px)
+{
+    .d-md-block
+    {
+        display: block!important;
+    }
+
+    .carousel-caption
+    {
+        margin-top: 10px;
+        padding-bottom: 0;
+    }
+
+    .carousel-caption p
+    {
+        width: 300px;
+    }
+
+    .nom-site
+    {
+        font-size: 45px;
+    }
+
+    .competence-block
+    {
+        margin: 10px auto;
+        width: 200px;
+    }
+
+    .footer-page
+    {
+        margin: 20px auto;
+
+    }
+
+    .footer-contact
+    {
+        margin: 20px auto;
+    }
+
+    .footer-social
+    {
+        margin: 10px auto;
+    }
+
+    .contact-block-info
+    {
+        margin-top: 10px;
+    }
+
+    .photo
+    {
+        display: block;
+    }
+
+    .gallerie .photo
+    {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .photo-row
+    {
+        display: block;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 990px)
+{
+    .footer-page
+    {
+        margin: 20px auto;
+    }
+
+    .footer-contact
+    {
+        margin: 20px auto;
+    }
+
+    .footer-social
+    {
+        margin: 20px auto;
+    }
+
+    .gallerie .photo
+    {
+        width: 40%;
+        margin: 10px auto;
+    }
+
+
+}
+
+@media(min-width: 991px) and (max-width: 1200px)
+{
+
+    .gallerie .photo
+    {
+        width: 33%;
+        margin: 10px auto;
+    }
+
+    .footer-contact
+    {
+        margin: 20px auto;
+    }
+
+    .footer-social
+    {
+        margin: 20px auto;
+    }
+
+    .gallerie .photo
+    {
+        width: 40%;
+        margin: 10px auto;
+    }
+
+}
+
 
 
 

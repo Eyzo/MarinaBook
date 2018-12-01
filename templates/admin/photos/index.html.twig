@@ -15,7 +15,6 @@
            <thead>
                <tr>
                     <th>Image</th>
-                    <th>Alt</th>
                     <th>Actions</th>
                </tr>
            </thead>
@@ -25,7 +24,6 @@
                     <td>
                         <img src="{{ vich_uploader_asset(photo,'imageFile')|imagine_filter('thumb_admin') }}">
                     </td>
-                    <td><div>{{ photo.alt }}</div></td>
                     <td>
                         <div>
                         <a class="btn btn-primary" href="{{ path('admin.photos.edit',{'id':photo.galleriephoto.id ,'id_photo':photo.id}) }}" alt="">modifier</a>

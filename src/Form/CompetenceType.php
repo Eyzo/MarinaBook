@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Competence;
+use App\Entity\Photos;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
@@ -15,9 +17,7 @@ class CompetenceType extends AbstractType
     {
         $builder
             ->add('color',ColorType::class)
-            ->add('image')
             ->add('nom')
-            ->add('alt')
             ->add('note',ChoiceType::class,[
                 'choices' => array(
                     '1' => 1,
@@ -27,6 +27,10 @@ class CompetenceType extends AbstractType
                     '5' => 5,
                 )
             ])
+            ->add('photos',PhotosType::class,array(
+                'label' => 'largeur d\'au minimum 130 px conseillé pour la qualitée de l\'image'
+            ))
+
         ;
     }
 

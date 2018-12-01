@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page de Contact du site Magical Marina !{% endblock %}
+{% block title %}Gallerie photo {{ gallerie.nom }}{% endblock %}
+{% block meta_title %}Gallerie photo {{ gallerie.nom }}{% endblock %}
+{% block description  %}Page du site Magical Marina contenant les diverses photos de gallerie photo {{ gallerie.nom }}{% endblock %}
+{% block keywords %}gallerie photo,gallerie photo magical marina,{{ gallerie.nom }}{% endblock %}
 
 {% block body %}
     <div class="gallerie container" style="margin: 30px auto;">
         <h2 class="titre-block">Gallerie photo : {{ gallerie.nom }}</h2>
 
         {% for row in photos|batch(4) %}
-        <div class="row" style="margin-top:10px;">
-            {% for photo in row %}
-                <a class="photo" href="{{ vich_uploader_asset(photo,'imageFile') }}" data-toggle="lightbox" data-gallery="{{ gallerie.nom }}"><img width="100%" height="230" src="{{ vich_uploader_asset(photo,'imageFile')| imagine_filter('thumb') }}" alt="{{ photo.alt }}"></a>
+        <div class="photo-row row" style="margin-top:10px;">
+            {% for i,photo in row %}
+                <a class="photo" href="{{ vich_uploader_asset(photo,'imageFile') }}" data-toggle="lightbox" data-gallery="{{ gallerie.nom }}"><img width="100%" height="230" src="{{ vich_uploader_asset(photo,'imageFile')| imagine_filter('thumb') }}" alt="photo-{{ i }}"></a>
             {% endfor %}
         </div>
         {% endfor %}

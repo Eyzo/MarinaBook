@@ -14,20 +14,16 @@
         <table class="table table-striped table-sm">
            <thead>
                <tr>
-                    <th>Image</th>
-                    <th>Alt</th>
                     <th>Lien</th>
-                    <th>Alt Lien</th>
-                   <th>Actions</th>
+                    <th>Image</th>
+                    <th>Actions</th>
                </tr>
            </thead>
             <tbody>
             {% for article in articles %}
                 <tr>
-                    <td>{{ article.image }}</td>
-                    <td>{{ article.alt }}</td>
                     <td>{{ article.lien }}</td>
-                    <td>{{ article.altLien }}</td>
+                    <td><img src="{{ vich_uploader_asset(article.photos,'imageFile')|imagine_filter('thumb_admin') }}"></td>
                     <td>
                         <a class="btn btn-primary" href="{{ path('admin.article.edit',{'id':article.id}) }}" alt="">modifier</a>
 

@@ -1,10 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page de Contact du site Magical Marina !{% endblock %}
+{% block title %}Page de Contact du site{% endblock %}
+{% block meta_title %}Page de Contact du site{% endblock %}
+{% block description  %}Sur cette Page Vous pouvez me contacter alors n'hésitez pas venez !{% endblock %}
+{% block keywords %}contact marina,contact magical,contact magical marina,contact{% endblock %}
 
 {% block body %}
 
+
+
     <div class="contact-block container">
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
         <div class="row">
             <div class="contact-block-form col-md-8">
                 <h2 class="titre-block"><i class="fas fa-star"></i> Envoyer moi un message</h2>

@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'acceuil du site Magical Marina !{% endblock %}
+{% block title %}Page d'acceuil du site{% endblock %}
+{% block meta_title %}Page d'acceuil du site{% endblock %}
+{% block description  %}Venez sur mon site Magical Marina ! Ici vous pouvez découvrir mes différentes créations ainsi que mes différentes compétences en make up ! Alors si votre but est de découvrir une artiste de talent ainsi que des créations originales n'hésitez pas venez !{% endblock %}
+{% block keywords %}{% endblock %}
 
 {% block body %}
 
@@ -51,12 +54,13 @@
             <div class="competence-row row">
 
 
-                    {% for competence in row %}
+                    {% for i,competence in row %}
                         <div class="competence-block">
                             <div class="competence-texte">
                                 <h4>{{ competence.nom }}</h4></div>
                             <div class="competence-logo" style="background-color:{{ competence.color }}">
-                                <img src="{{ asset(competence.image) }}" alt="{{ competence.alt }}">
+
+                                <img src="{{ vich_uploader_asset(competence.photos,'imageFile')|imagine_filter('thumb_competence') }}" alt="competence-image-{{ i }}">
                             </div>
                             <div class="competence-note">
                                 {% for i in 1..competence.note %}
@@ -85,7 +89,7 @@
             {% for gallerie in galleries %}
                 {% if loop.first %}
 
-                        <div class="carousel-item active" style="background-image: linear-gradient(#4a4a4a 0%,rgba(255, 255, 255, 0) 100%),url({{ asset(gallerie.image) }});">
+                        <div class="carousel-item active" style="background-image: linear-gradient(#4a4a4a 0%,rgba(255, 255, 255, 0) 100%),url({{ vich_uploader_asset(gallerie.image,'imageFile') }});">
                             <a href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}" alt="{{ gallerie.nom }}">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h2>{{ gallerie.nom }}</h2>
@@ -96,12 +100,12 @@
 
                 {% else %}
 
-                        <div class="carousel-item" style="background-image: linear-gradient(#4a4a4a 0%,rgba(255, 255, 255, 0) 100%),url({{ asset(gallerie.image) }});">
+                        <div class="carousel-item" style="background-image: linear-gradient(#4a4a4a 0%,rgba(255, 255, 255, 0) 100%),url({{ vich_uploader_asset(gallerie.image,'imageFile') }});">
                             <a href="{{ path('gallerie_photo',{'slug':gallerie.slug}) }}" alt="{{ gallerie.nom }}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h2>{{ gallerie.nom }}</h2>
                                 <p class="text-description">
-                                    {{ gallerie.description }}
+                                    {{ gallerie.description|texteLimiter(300) }}
                                 </p>
                             </div>
                             </a>
@@ -130,9 +134,9 @@
 
         {% for row in articles|batch(3) %}
         <div class="row">
-            {% for article in row %}
+            {% for i,article in row %}
             <div class="article">
-                <a target="_blank" href="{{ article.lien }}" alt="{{ article.AltLien }}"><img src="{{ asset(article.image) }}" alt="{{ article.alt }}"></a>
+                <a target="_blank" href="{{ article.lien }}" alt="article-lien-{{ i }}"><img src="{{ vich_uploader_asset(article.photos,'imageFile')|imagine_filter('thumb_article') }}" alt="article-img-{{ i }}"></a>
             </div>
             {% endfor %}
         </div>

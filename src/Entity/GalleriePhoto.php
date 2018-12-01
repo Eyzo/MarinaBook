@@ -29,15 +29,6 @@ class GalleriePhoto
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $alt;
 
     /**
      * @ORM\Column(length=128,unique=true)
@@ -46,9 +37,14 @@ class GalleriePhoto
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photos", mappedBy="galleriePhoto")
+     * @ORM\OneToMany(targetEntity="App\Entity\Photos", mappedBy="galleriePhoto",cascade={"persist","remove"})
      */
     private $photos;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Photos", cascade={"persist", "remove"})
+     */
+    private $image;
 
     public function __construct()
     {
@@ -89,29 +85,6 @@ class GalleriePhoto
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getAlt(): ?string
-    {
-        return $this->alt;
-    }
-
-    public function setAlt(string $alt): self
-    {
-        $this->alt = $alt;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Photos[]
@@ -140,6 +113,18 @@ class GalleriePhoto
                 $photo->setGalleriePhoto(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Photos
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Photos $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

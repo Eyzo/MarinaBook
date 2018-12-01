@@ -14,8 +14,9 @@ class GallerieType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
-            ->add('image')
-            ->add('alt')
+            ->add('image',PhotosType::class,array(
+                'label' => 'largeur d\'au minimum 1920 px conseillé pour la qualitée de l\'image'
+            ))
         ;
     }
 

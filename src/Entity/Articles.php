@@ -16,15 +16,6 @@ class Articles
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $alt;
 
     /**
      * @ORM\Column(type="text")
@@ -32,37 +23,13 @@ class Articles
     private $lien;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\Photos", mappedBy="article", cascade={"persist", "remove"})
      */
-    private $alt_lien;
+    private $photos;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getAlt(): ?string
-    {
-        return $this->alt;
-    }
-
-    public function setAlt(string $alt): self
-    {
-        $this->alt = $alt;
-
-        return $this;
     }
 
     public function getLien(): ?string
@@ -77,14 +44,20 @@ class Articles
         return $this;
     }
 
-    public function getAltLien(): ?string
+    public function getPhotos(): ?Photos
     {
-        return $this->alt_lien;
+        return $this->photos;
     }
 
-    public function setAltLien(string $alt_lien): self
+    public function setPhotos(?Photos $photos): self
     {
-        $this->alt_lien = $alt_lien;
+        $this->photos = $photos;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newArticle = $photos === null ? null : $this;
+        if ($newArticle !== $photos->getArticle()) {
+            $photos->setArticle($newArticle);
+        }
 
         return $this;
     }

@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PhotosType extends AbstractType
@@ -16,9 +17,8 @@ class PhotosType extends AbstractType
     {
         $builder
             ->add('imageFile',FileType::class,[
-                'required' => true,
+                'required' => true
             ])
-            ->add('alt')
         ;
     }
 

@@ -24,22 +24,17 @@ class Competence
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $alt;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $note;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Photos", mappedBy="competence", cascade={"persist", "remove"})
+     */
+    private $photos;
 
     public function getId(): ?int
     {
@@ -58,18 +53,6 @@ class Competence
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -82,18 +65,6 @@ class Competence
         return $this;
     }
 
-    public function getAlt(): ?string
-    {
-        return $this->alt;
-    }
-
-    public function setAlt(string $alt): self
-    {
-        $this->alt = $alt;
-
-        return $this;
-    }
-
     public function getNote(): ?int
     {
         return $this->note;
@@ -102,6 +73,24 @@ class Competence
     public function setNote(?int $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getPhotos(): ?Photos
+    {
+        return $this->photos;
+    }
+
+    public function setPhotos(?Photos $photos): self
+    {
+        $this->photos = $photos;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompetence = $photos === null ? null : $this;
+        if ($newCompetence !== $photos->getCompetence()) {
+            $photos->setCompetence($newCompetence);
+        }
 
         return $this;
     }

@@ -17,7 +17,6 @@
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Image</th>
-                    <th>Alt</th>
                    <th>Photos</th>
                    <th>Actions</th>
                </tr>
@@ -27,8 +26,7 @@
                 <tr>
                     <td>{{ gallerie.nom }}</td>
                     <td style="max-width: 600px;">{{ gallerie.description }}</td>
-                    <td>{{ gallerie.image }}</td>
-                    <td>{{ gallerie.alt }}</td>
+                    <td><img src="{{ vich_uploader_asset(gallerie.image,'imageFile')|imagine_filter('thumb_admin') }}"></td>
                     <td><a class="btn btn-info" href="{{ path('admin.photos',{'id':gallerie.id}) }}">Voir Photos</a></td>
                     <td>
                         <a class="btn btn-primary" href="{{ path('admin.gallerie.edit',{'id':gallerie.id}) }}" alt="">modifier</a>

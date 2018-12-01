@@ -14,11 +14,10 @@
         <table class="table table-striped table-sm">
            <thead>
                <tr>
-                    <th>Couleur</th>
-                    <th>Image</th>
-                    <th>Nom</th>
-                    <th>Alt</th>
-                    <th>Note</th>
+                   <th>Couleur</th>
+                   <th>Nom</th>
+                   <th>Note</th>
+                   <th>Image</th>
                    <th>Actions</th>
                </tr>
            </thead>
@@ -26,10 +25,9 @@
             {% for competence in competences %}
                 <tr>
                     <td>{{ competence.color }}</td>
-                    <td>{{ competence.image }}</td>
                     <td>{{ competence.nom }}</td>
-                    <td>{{ competence.alt }}</td>
                     <td>{{ competence.note }}</td>
+                    <td><img src="{{ vich_uploader_asset(competence.photos,'imageFile')|imagine_filter('thumb_admin') }}"></td>
                     <td>
                         <a class="btn btn-primary" href="{{ path('admin.competence.edit',{'id':competence.id}) }}" alt="">modifier</a>
 

@@ -12,10 +12,10 @@ class ArticlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image')
-            ->add('alt')
             ->add('lien')
-            ->add('alt_lien')
+            ->add('photos',PhotosType::class,array(
+                'label' => 'largeur d\'au minimum 250 px conseillé pour la qualitée de l\'image'
+            ))
         ;
     }
 

@@ -20,14 +20,10 @@ class Photos
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $alt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\GalleriePhoto", inversedBy="photos")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\GalleriePhoto", inversedBy="photos", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $galleriePhoto;
 
@@ -52,6 +48,16 @@ class Photos
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Articles", inversedBy="photos", cascade={"persist", "remove"})
+     */
+    private $article;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Competence", inversedBy="photos", cascade={"persist", "remove"})
+     */
+    private $competence;
 
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
@@ -86,18 +92,6 @@ class Photos
         return $this->id;
     }
 
-    public function getAlt(): ?string
-    {
-        return $this->alt;
-    }
-
-    public function setAlt(string $alt): self
-    {
-        $this->alt = $alt;
-
-        return $this;
-    }
-
     public function getGalleriePhoto(): ?GalleriePhoto
     {
         return $this->galleriePhoto;
@@ -108,6 +102,35 @@ class Photos
         $this->galleriePhoto = $galleriePhoto;
 
         return $this;
+    }
+
+    public function getArticle(): ?Articles
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Articles $article): self
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    public function getCompetence(): ?Competence
+    {
+        return $this->competence;
+    }
+
+    public function setCompetence(?Competence $competence): self
+    {
+        $this->competence = $competence;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getImageName();
     }
 
 }
