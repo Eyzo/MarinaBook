@@ -38,7 +38,6 @@
 body
 {
     font-family: 'Roboto', sans-serif;
-    min-width: 410px;
 }
 
 .navbar-fixed-top {
@@ -385,7 +384,7 @@ input[type="submit"]:hover
     border-color: #007bff;
 }
 
-@media (max-width: 767px)
+@media only screen and (max-width: 767px)
 {
     .d-md-block
     {
@@ -452,7 +451,7 @@ input[type="submit"]:hover
     }
 }
 
-@media(min-width: 768px) and (max-width: 990px)
+@media only screen and (min-width: 768px) and (max-width: 990px)
 {
     .footer-page
     {
@@ -478,7 +477,7 @@ input[type="submit"]:hover
 
 }
 
-@media(min-width: 991px) and (max-width: 1200px)
+@media only screen and (min-width: 991px) and (max-width: 1200px)
 {
 
     .gallerie .photo

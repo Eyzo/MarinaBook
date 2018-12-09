@@ -22,8 +22,8 @@ class Photos
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\GalleriePhoto", inversedBy="photos", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\GalleriePhoto", inversedBy="photos")
+     * @ORM\JoinColumn(nullable=true,name="gallerie_photo_id",referencedColumnName="id",onDelete="CASCADE")
      */
     private $galleriePhoto;
 
@@ -51,11 +51,13 @@ class Photos
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Articles", inversedBy="photos", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true,name="article_id",referencedColumnName="id",onDelete="CASCADE")
      */
     private $article;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Competence", inversedBy="photos", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true,name="competence_id",referencedColumnName="id",onDelete="CASCADE")
      */
     private $competence;
 

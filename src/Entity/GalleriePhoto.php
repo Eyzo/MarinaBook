@@ -42,7 +42,7 @@ class GalleriePhoto
     private $photos;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Photos", cascade={"persist", "remove"})
+     *@ORM\OneToOne(targetEntity="App\Entity\Photos", cascade={"persist", "remove"})
      */
     private $image;
 
